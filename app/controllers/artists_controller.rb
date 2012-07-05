@@ -2,8 +2,11 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.all
-
+    @artists = Artist.find(:all, :order => :name)
+    @artists.each do |a|
+      get_albums a
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @artists }
@@ -14,7 +17,8 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     @artist = Artist.find(params[:id])
-
+    @albums = Album.where(:artist_id => params[:id], :user_id => current_user.id)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @artist }
@@ -79,5 +83,10 @@ class ArtistsController < ApplicationController
       format.html { redirect_to artists_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def get_albums artist
+    artist.albums = Album.where("artist_id = ? AND user_id = ?", artist.id, current_user.id)
   end
 end

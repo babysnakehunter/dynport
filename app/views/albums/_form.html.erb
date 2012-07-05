@@ -17,15 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :artist_id %><br />
-    <%= f.number_field :artist_id %>
+    <%= f.select :artist_id, options_from_collection_for_select(@artists, "id", "name"), :prompt => 'Select artist' %>
   </div>
   <div class="field">
     <%= f.label :released %><br />
-    <%= f.date_select :released %>
+    <%= f.date_select :released, { :start_year => 1920, :end_year => Time.now.year, :discard_day => true, :discard_month => true } %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>

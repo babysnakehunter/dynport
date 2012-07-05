@@ -1,10 +1,14 @@
 class AlbumsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_artists, :only => [:edit, :new, :create]
   
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    @albums = Album.where(:user_id => current_user.id)
+    @albums.each do |a|
+      get_artist a
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +20,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     @album = Album.find(params[:id])
+    get_artist @album
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +32,7 @@ class AlbumsController < ApplicationController
   # GET /albums/new.json
   def new
     @album = Album.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @album }
@@ -37,6 +42,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1/edit
   def edit
     @album = Album.find(params[:id])
+    get_artist
   end
 
   # POST /albums
@@ -82,4 +88,14 @@ class AlbumsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+  def get_artists
+    @artists = Artist.all
+  end
+  
+  def get_artist album= @album
+    album.artist = Artist.find(album.artist_id)
+  end
+
 end

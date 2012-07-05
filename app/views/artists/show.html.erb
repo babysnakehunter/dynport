@@ -1,10 +1,25 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @artist.name %>
 </p>
 
+<table>
+	<thead>
+		
+		<tr>
+			<td>Album</td>
+			<td>Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+	<% @albums.each do |a| %>
+		<tr>
+			<td><%= a.name %></td>
+			<td><%= link_to 'Edit', edit_album_path %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
 
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>

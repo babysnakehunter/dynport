@@ -1,0 +1,6 @@
+<% if user_signed_in? -%>
+Currently signed in as <%= link_to current_user.email, edit_user_registration_path %>. <%= link_to 'Not you? / Sign out', destroy_user_session_path, { :method => :delete } -%>
+<% else -%>
+Currently not signed in. <%= link_to 'Sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path -%>
+<% end -%>
+<br />

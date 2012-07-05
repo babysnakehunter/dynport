@@ -5,7 +5,6 @@
     <th>Name</th>
     <th>Artist</th>
     <th>Released</th>
-    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,9 +13,8 @@
 <% @albums.each do |album| %>
   <tr>
     <td><%= album.name %></td>
-    <td><%= album.artist_id %></td>
-    <td><%= album.released %></td>
-    <td><%= album.user_id %></td>
+    <td><%= album.artist.name %></td>
+    <td><%= album.released.year %></td>
     <td><%= link_to 'Show', album %></td>
     <td><%= link_to 'Edit', edit_album_path(album) %></td>
     <td><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>
