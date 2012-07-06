@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  attr_accessible :avatar, :name
+
+  # Paperclip
+  has_attached_file :avatar, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/system/missing.jpg"
+  validates_format_of :avatar, :with => /.+.jpg|jpeg|png|bmp$/i, :allow_blank => true
 end

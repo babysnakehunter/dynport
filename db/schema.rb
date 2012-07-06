@@ -11,21 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705162313) do
+ActiveRecord::Schema.define(:version => 20120706090435) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.date     "released"
     t.integer  "artist_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "coverart_file_name"
+    t.string   "coverart_content_type"
+    t.integer  "coverart_file_size"
+    t.datetime "coverart_updated_at"
   end
 
   create_table "artists", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -41,7 +49,14 @@ ActiveRecord::Schema.define(:version => 20120705162313) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
+  
+  add_index "albums", ["artist_id"], :name => "albums_artist_id"
+  add_index "albums", ["user_id"], :name => "albums_user_id"
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true

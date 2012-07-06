@@ -4,8 +4,11 @@
   <%= @album.name %>
 </p>
 
+<%= image_tag @album.coverart.url(:medium) %>
+
 <p>
   <b>Artist:</b>
+  <%= image_tag @album.artist.avatar.url(:thumb) %>
   <%= @album.artist.name %>
 </p>
 

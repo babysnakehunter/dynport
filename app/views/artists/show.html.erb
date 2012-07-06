@@ -3,9 +3,10 @@
   <%= @artist.name %>
 </p>
 
+<%= image_tag @artist.avatar.url(:medium) %>
+
 <table>
 	<thead>
-		
 		<tr>
 			<td>Album</td>
 			<td>Actions</td>
@@ -14,8 +15,12 @@
 	<tbody>
 	<% @albums.each do |a| %>
 		<tr>
-			<td><%= a.name %></td>
-			<td><%= link_to 'Edit', edit_album_path %></td>
+			<td><%= a.name %><br /><%= image_tag a.coverart.url(:thumb) %></td>
+			<td>
+				<%= link_to 'Show', album_path(a) %>
+				<%= link_to 'Edit', edit_album_path(a) %>
+				<%= link_to 'Destroy', a,  method: :delete  %>
+			</td>
 		</tr>
 	<% end %>
 	</tbody>

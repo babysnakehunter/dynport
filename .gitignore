@@ -16,3 +16,6 @@
 
 # MAC files
 .DS_Store
+
+# Uploads
+public/system/*
