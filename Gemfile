@@ -10,6 +10,16 @@ gem 'sqlite3'
 gem 'devise'
 gem 'paperclip', "~> 3.0"
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.4"
+  gem 'steak'
+end
+
+group :test do
+  gem 'rspec-rails-mocha', '~> 0.3.1', :require => false
+  gem 'factory_girl_rails'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
