@@ -92,6 +92,7 @@ class AlbumsController < ApplicationController
   private
   def get_artists
     @artists = Artist.all
+     redirect_to new_artist_path, :notice => 'No artists. Create one first' if @artists.empty? 
   end
   
   def get_artist album= @album

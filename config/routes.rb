@@ -2,9 +2,10 @@ Dynport::Application.routes.draw do
   devise_for :users
 
   resources :albums
+  match 'artists/:album_artist_id/new' => 'albums#new', :as => :new_album_for_artist
 
   resources :artists
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

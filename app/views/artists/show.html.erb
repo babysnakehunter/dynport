@@ -5,6 +5,7 @@
 
 <%= image_tag @artist.avatar.url(:medium) %>
 
+<% unless @albums.blank? %>
 <table>
 	<thead>
 		<tr>
@@ -22,9 +23,13 @@
 				<%= link_to 'Destroy', a,  method: :delete  %>
 			</td>
 		</tr>
+		<%= new_album_link 'Add another?' %>
 	<% end %>
 	</tbody>
 </table>
+<% else %>
+<p>No albums yet. <%= new_album_link 'Add one?' %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>
