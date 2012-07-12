@@ -76,13 +76,17 @@ class ArtistsController < ApplicationController
   # DELETE /artists/1
   # DELETE /artists/1.json
   def destroy
-    @artist = Artist.find(params[:id])
-    @artist.destroy
-
-    respond_to do |format|
-      format.html { redirect_to artists_url }
-      format.json { head :no_content }
-    end
+    redirect_to artists_path, :notice => "Only admins should be allowed to do that"
+    
+    # TODO implement admin-users, restrict action to admins, delete all albums of artist
+    
+    # @artist = Artist.find(params[:id])
+    #     @artist.destroy
+    # 
+    #     respond_to do |format|
+    #       format.html { redirect_to artists_url }
+    #       format.json { head :no_content }
+    #     end
   end
   
   private

@@ -1,5 +1,4 @@
 class AlbumsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :get_artists, :only => [:edit, :new, :create]
   
   # GET /albums
@@ -84,7 +83,7 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to albums_url }
+      format.html { redirect_to albums_url, notice: 'Album was deleted' }
       format.json { head :no_content }
     end
   end

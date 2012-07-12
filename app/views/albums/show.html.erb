@@ -8,13 +8,14 @@
 
 <p>
   <b>Artist:</b>
-  <%= image_tag @album.artist.avatar.url(:thumb) %>
   <%= @album.artist.name %>
 </p>
 
+<%= image_tag @album.artist.avatar.url(:thumb) %>
+
 <p>
   <b>Released:</b>
-  <%= @album.released.year %>
+  <%= @album.released.year unless @album.released.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
